@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Function to check if a package is installed
+check_package() {
+    brew list "$1" &>/dev/null
+}
+
+# Package name to check
+package_name="python@3.10"
+
+# Check if the package is installed
+if check_package "$package_name"; then
+    echo "Package $package_name is already installed."
+else
+    echo "Package $package_name is not installed. Installing..."
+    # Install the package
+    brew install "$package_name"
+fi
+
+virtualenv -p  /opt/homebrew/bin/python3.10 venv
+source venv/bin/activate
